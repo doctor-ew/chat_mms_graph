@@ -1,4 +1,4 @@
-// /packages/backend/src/chat/chatHandler.ts
+// /src/backend/src/chat/chatHandler.ts
 
 import { OpenAI } from "openai";
 import axios from "axios";

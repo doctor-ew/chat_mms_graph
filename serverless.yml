@@ -11,18 +11,34 @@ provider:
 functions:
   pocketMorty:
     handler: dist/server-lambda.handler
-    #timeout: 30 # Timeout in seconds
     events:
       - http:
           path: rickmorty
           method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
   chat:
     handler: dist/server-lambda.handler
-    #timeout: 30 # Timeout in seconds
     events:
       - http:
           path: api/chat
           method: post
+          cors:
+            origin: '*'
+            headers:
+              - Content-Type
+              - X-Amz-Date
+              - Authorization
+              - X-Api-Key
+              - X-Amz-Security-Token
+            allowCredentials: false
 
 plugins:
   - serverless-offline
@@ -38,9 +54,7 @@ custom:
     basePath: ''
     certificateName: '*.doctorew.com'
     createRoute53Record: true
-    endpointType: 'edge' # Use 'regional' or 'edge' if you prefer an edge-optimized setup
+    endpointType: 'edge'
     securityPolicy: tls_1_2
   includeDependencies:
     enableCaching: true
-
-
